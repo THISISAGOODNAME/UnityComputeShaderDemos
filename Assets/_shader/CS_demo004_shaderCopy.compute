@@ -1,0 +1,24 @@
+﻿#pragma kernel CSMain4_2texCpy
+
+RWTexture2D<float4> texCopy;
+Texture2D<float4> tex;
+
+SamplerState _LinearClamp;
+SamplerState _LinearRepeat;
+SamplerState _PointClamp;
+SamplerState _PointRepeat;
+
+[numthreads(8,8,1)]
+void CSMain4_2texCpy (uint2 id : SV_DispatchThreadID)
+{
+    float w, h;
+	tex.GetDimensions(w, h);
+	float2 uv = float2(id.x / w, id.y / h);
+
+    float4 t = tex.SampleLevel(_LinearClamp, uv, 0);
+	//float4 t = tex.SampleLevel(_PointClamp, uv, 0);
+	//float4 t = tex.mips[0][id];
+	//float4 t = tex.Load(uint3(id, 0));
+	//float4 t = tex.Sample(_LinearClamp, uv); // error!
+	texCopy[id] = t;
+}

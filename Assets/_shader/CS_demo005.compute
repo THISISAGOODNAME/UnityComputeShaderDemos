@@ -1,0 +1,17 @@
+﻿#pragma kernel CSMain5
+
+struct Vert
+{
+	float3 position;
+	float3 color;
+};
+
+StructuredBuffer<Vert> buffer;
+RWStructuredBuffer<Vert> buffer2;
+
+[numthreads(64,1,1)]
+void CSMain5 (uint id : SV_DispatchThreadID)
+{
+    buffer2[id] = buffer[id];
+	//buffer2[id].color = float3(1, 0, 0);
+}

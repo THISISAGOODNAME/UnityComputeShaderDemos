@@ -1,0 +1,16 @@
+﻿#pragma kernel CSMain8
+#define THREADS 4
+#define GROUPS 1
+
+RWStructuredBuffer<int> counterBuffer;
+
+[numthreads(THREADS,THREADS,1)]
+void CSMain8 (uint3 dispatchID : SV_DispatchThreadID)
+{
+    uint id = dispatchID.x + dispatchID.y * THREADS * GROUPS;
+
+	int count = counterBuffer.IncrementCounter();
+	//int count = counterBuffer.DecrementCounter();
+
+	counterBuffer[id] = count;
+}

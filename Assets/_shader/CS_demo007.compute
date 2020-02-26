@@ -1,0 +1,12 @@
+﻿#pragma kernel CSMain7
+
+ConsumeStructuredBuffer<float3> consumeBuffer;
+
+float size;
+float width;
+
+[numthreads(8,8,1)]
+void CSMain7 (uint3 id : SV_DispatchThreadID)
+{
+    float3 pos = consumeBuffer.Consume();
+}

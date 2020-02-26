@@ -1,0 +1,18 @@
+﻿#pragma kernel CSMain9_tint
+
+Texture2D<float4> Source;
+RWTexture2D<float4> Destination;
+
+float4 Color;
+
+[numthreads(8,8,1)]
+void CSMain9_tint (
+	uint3 groupID : SV_GroupID, // ID of thread group; range depends on Dispatch call
+	uint3 groupThreadID : SV_GroupThreadID, // ID of thread in a thread group; range depends on numthreads
+	uint groupIndex : SV_GroupIndex, // flattened/linearized GroupThreadID between 0 and 
+									 // numthreads.x * numthreads.y * numthreadz.z - 1 
+	uint3 id : SV_DispatchThreadID // = GroupID * numthreads + GroupThreadID
+)
+{
+    Destination[id.xy] = Source[id.xy] * Color;
+}
