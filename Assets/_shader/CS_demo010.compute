@@ -1,0 +1,25 @@
+﻿#pragma kernel CSMain10_sum
+#pragma enable_d3d11_debug_symbols
+
+RWStructuredBuffer<int> buffer;
+
+[numthreads(64,1,1)]
+void CSMain10_sum (uint id : SV_DispatchThreadID)
+{
+    //buffer[id] += 1;
+
+	//int strip = 512;
+	for (uint strip = 512; strip > 0; strip >>= 1)
+	{
+		if (id < strip)
+		{
+			//buffer[id] += buffer[id + strip];
+			int idR = id + strip;
+			int tmpIntR = buffer[idR];
+			int tmpIntL = buffer[id];
+			int tmpIntS = tmpIntL + tmpIntR;
+			buffer[id] = tmpIntS;
+		}
+		AllMemoryBarrierWithGroupSync();
+	}
+}

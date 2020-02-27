@@ -9,10 +9,12 @@
  5. Demo 07: Consume buffers
  6. Demo 08: Counter buffers
  7. Demo 09: Image effects
+ 8. Demo 10: Sum
 
 
 
  ## Reference
  [https://cheneyshen.com/category/all/gpu/compute-shader/](https://cheneyshen.com/category/all/gpu/compute-shader/)
  [https://en.wikibooks.org/wiki/Cg_Programming/Unity/Computing_Image_Effects](https://en.wikibooks.org/wiki/Cg_Programming/Unity/Computing_Image_Effects)
+ [https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf)
 
