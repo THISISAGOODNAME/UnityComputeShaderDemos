@@ -1,5 +1,5 @@
 ﻿#pragma kernel CSMain10_sum
-#pragma enable_d3d11_debug_symbols
+//#pragma enable_d3d11_debug_symbols
 
 RWStructuredBuffer<int> buffer;
 
@@ -13,12 +13,12 @@ void CSMain10_sum (uint id : SV_DispatchThreadID)
 	{
 		if (id < strip)
 		{
-			//buffer[id] += buffer[id + strip];
-			int idR = id + strip;
-			int tmpIntR = buffer[idR];
-			int tmpIntL = buffer[id];
-			int tmpIntS = tmpIntL + tmpIntR;
-			buffer[id] = tmpIntS;
+			buffer[id] += buffer[id + strip];
+			//int idR = id + strip;
+			//int tmpIntR = buffer[idR];
+			//int tmpIntL = buffer[id];
+			//int tmpIntS = tmpIntL + tmpIntR;
+			//buffer[id] = tmpIntS;
 		}
 		AllMemoryBarrierWithGroupSync();
 	}
